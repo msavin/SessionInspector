@@ -1,0 +1,25 @@
+<body>
+	<div id="SessionInspector">
+		{{> SessionInspector_header}}
+		{{#each SessionItems}}
+			<div class="SessionInspector_row">
+				<span>{{this}}</span>:
+				{{{value}}}
+			</div>
+		{{else}}
+			{{> SessionInspector_empty}}
+		{{/each}}
+	</div>
+</body>
+
+<template name="SessionInspector_empty">
+	<div class="SessionInspector_row">
+		<span>None Found</span>
+	</div>
+</template>
+
+<template name="SessionInspector_header">
+	<div class="SessionInspector_header">
+		SessionInspector
+	</div>
+</template>

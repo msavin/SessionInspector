@@ -1,0 +1,74 @@
+<head>
+  <title>SessionInspector</title>
+  <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no, minimal-ui, mobile-web-app-capable, height=device-height" />
+</head>
+
+	<body>
+	
+	{{> title}}
+	{{> subHeader}}
+	{{> content}}
+
+	
+</body>
+
+<template name="title">
+	<div class="title">
+		<a href="https://github.com/msavin/SessionInspector">
+			<img class="github" src="github.png">
+		</a>
+		<div class="spacer"></div>
+			SessionInspector <i>for Meteor</i>
+	</div>
+</template>
+
+<template name="subHeader">
+	<div class="subHeader">
+		meteor add msavin:sessioninspector
+	</div>
+</template>
+
+
+<template name="content">
+	<div class="content">
+		
+		<br>
+		Subscriptions are one of Meteor's best features, but as everyone who used them knows, its easy to get carried away. With SessionInspector, you can keep an eye on all your sessions and their values, and have constant awareness of what's happening with-in your application. If you like this package, you may also like <a href="#">MongoInspector</a>.
+		<br><br>
+
+		<div class="header">#&nbsp; Package Features</div>
+		<span>&bull;</span> Watch your sessions update reactively in the browser  (see bottom right corner)<br>
+		<span>&bull;</span> Click on a session to update its value<br>
+		<span>&bull;</span> Click on the title bar to hide the widget<br>
+		<br>
+
+		<div class="header">#&nbsp; Technical Features</div>
+		<span>&bull;</span> Does not intrude with your application code<br>
+		<span>&bull;</span> Does not compile into production code<br>
+		<span>&bull;</span> No configuration necessary <br>
+		<br>
+
+		<div class="header">#&nbsp; Created by Max Savin</div>
+		&bull; Website: <a href="http://maxsavin.com">maxsavin.com</a><br>
+		&bull; Twitter: <a href="http://twitter.com/msavin" target="_blank">@msavin</a><br>
+		&bull; Contact: <a href="mailto:contact@maxsavin.com?subject=SessionInspector">contact@maxsavin.com</a><br>
+		&bull; Let me know what you think<br>
+		&bull; Available for Work: Yes<br>
+		<br>
+
+
+
+		<div class="header">#&nbsp; Changelog</div>
+		<span><strong>v0.1.0</strong></span><br>
+		- Initial version launched<br>
+		<br>
+
+		<div class="header">#&nbsp; Planned Features</div>
+		 - Support for saving and displaying objects <br>
+		 &nbsp; &nbsp; &rarr; Currently, it logs the objects you click on to the console<br>
+		 - Support for saving arrays<br>
+		 - Redesign under consideration (feedback welcome)<br>
+
+		<br>
+	</div>
+</template>

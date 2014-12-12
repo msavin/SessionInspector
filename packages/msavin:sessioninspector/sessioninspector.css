@@ -1,0 +1,58 @@
+#SessionInspector {
+  opacity: 0.6;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: 0px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-family: monospace;
+  z-index: 9999999999;
+  font-size: 14px;
+  line-height: 28px;
+  border-radius: 5px 0 0 0;
+  overflow: hidden;
+  transition: .6s;
+}
+#SessionInspector:hover {
+  max-width: auto;
+}
+.SessionInspector_header {
+  padding: 0 8px;
+  font-weight: bold;
+  background: #000; }
+.SessionInspector_header:hover {
+  cursor: pointer; }
+.SessionInspector_row {
+  margin-top: 1px;
+  box-shadow: 0 -1px 0 0 rgba(255, 255, 255, 0.2);
+  padding: 0 8px;
+  overflow: hidden;
+  /*text-overflow: ellipsis;*/
+  white-space: nowrap;
+  max-width: 136px;
+  transition: .6s;
+  color: transparent;
+}
+.SessionInspector_row:hover {
+  background: #000;
+  cursor: pointer; 
+}
+.SessionInspector_row span {
+  color: #fff;
+}
+#SessionInspector:hover .SessionInspector_row {
+  max-width: 1000px;
+  color: rgba(255,255,255,.6);
+}
+.SessionInspector_row:active {
+  color: rgba(0, 0, 0, 0.8);
+  background: #fff;
+  transition: 0.7s; }
+
+
+@media (max-width: 768px) {
+  #SessionInspector {
+    display: none;
+  }
+}
