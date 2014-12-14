@@ -1,4 +1,3 @@
-
 if (Meteor.isClient) {
 
     var SessionChecker = {
@@ -72,8 +71,8 @@ if (Meteor.isClient) {
                 
                 var newValue = prompt("What would you like to change the value of this Session variable to?");
                 
-                if (newValue === "") {
-                    Console.log("SessionInspector: Prompt entry cannot be empty. For null value, enter null.")
+                if (newValue === null) {
+                    console.log("SessionInspector: Prompt entry cannot be empty. For null value, enter null.")
                 } else {
                     // Detect user entry
 
