@@ -6,13 +6,8 @@ if (Meteor.isClient) {
                 return true;
             }
         },
-        true: function (session) {
-            if (Session.get(session) === true) {
-                return true;
-            }
-        },
-        false: function (session) {
-            if (Session.get(session) === false) {
+        boolean: function (session) {
+            if (typeof Session.get(session) === "boolean") {
                 return true;
             }
         },
@@ -48,12 +43,8 @@ if (Meteor.isClient) {
                 return '<i>null</i>';
             } else
 
-            if (SessionChecker.true(this)) {
-                return '<i>true</i>';
-            } else 
-
-            if (SessionChecker.false(this)) {
-                return '<i>false</i>';
+            if (SessionChecker.boolean(this)) {
+                return '<i>' + Session.get(this) + '</i>';
             } else 
 
             if (SessionChecker.number(this)) {
