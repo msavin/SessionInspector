@@ -66,13 +66,12 @@ if (Meteor.isClient) {
             if (typeof(Session.get(this)) === "object") {
                 console.log(Session.get(this));
             } else {
+                
                 var oldValue = Session.get(this);
-                
-                
                 var newValue = prompt("What would you like to change the value of this Session variable to?");
                 
-                if (newValue === null) {
-                    console.log("SessionInspector: Prompt entry cannot be empty. For null value, enter null.")
+                if (newValue === "" || newValue === null || newValue === undefined)  {
+                    console.log("SessionInspector: Prompt entry cannot be empty. For null value, enter null.");
                 } else {
                     // Detect user entry
 
