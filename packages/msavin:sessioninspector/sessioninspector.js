@@ -30,7 +30,7 @@ if (Meteor.isClient) {
 
     Template.body.helpers({
         SessionItems: function () {
-            var SessionKeys = Object.getOwnPropertyNames(Session.keys)
+            var SessionKeys = Object.getOwnPropertyNames(Session.keys);
             return SessionKeys;
         },
         value: function () {
@@ -57,23 +57,20 @@ if (Meteor.isClient) {
                     return "<i>Object</i>";
                     break;
             }
-            
-
 
         }
     });
 
     Template.body.events({
         'click .SessionInspector_row': function () {
-            var oldValue = Session.get(this);
-            var newValue = prompt("What would you like to change the value of this Session variable to?");
             
-            if (newValue === "" || newValue === null || newValue === undefined)  {
-                console.log("SessionInspector: Prompt entry cannot be empty. For null value, enter null.");
+            var value = prompt("What would you like to change the value of this Session variable to?");
+            
+            if (value === "" || value === null || value === undefined)  {
+                console.log("SessionInspector: Prompt entry cannot be empty. To set null value, enter null.");
             } else {
-                // Detect user entry
 
-                switch (newValue) {
+                switch (value) {
                     case "false":
                         Session.set(this, false);
                         break;
@@ -82,15 +79,13 @@ if (Meteor.isClient) {
                         break;
                     case "null":
                         Session.set(this, null);
-                        newValue = "null";
+                        value = "null";
                         break;
                     default:
-                        Session.set(this, newValue);
+                        Session.set(this, value);
                         break;
                 }
                 
-                // Alert user
-                console.log("SessionInspector: Session " + this + " changed from " + oldValue + " to " + newValue + ".");
             }  
         },
         'click .SessionInspector_header': function () {

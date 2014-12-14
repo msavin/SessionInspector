@@ -1,7 +1,7 @@
 Package.describe({
   name:    'msavin:sessioninspector',
   summary: 'View and edit all your session variables in the browser.',
-  version: '1.0.0',
+  version: '1.1.0',
   git:     'https://github.com/msavin/SessionInspector.git',
   debugOnly: true
 });
