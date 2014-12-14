@@ -25,9 +25,16 @@ if (Meteor.isClient) {
                 return true;
             }
         },
-        object: function () {
-            // 
-        } 
+        number: function (session) {
+            if (typeof Session.get(session) === "number") {
+                return true;
+            }
+        },
+        string: function (session) {
+            if (typeof Session.get(session) === "string") {
+                return true;
+            }  
+        }
     }
 
     Template.body.helpers({
@@ -49,47 +56,48 @@ if (Meteor.isClient) {
                 return '<i>false</i>';
             } else 
 
-            if (SessionChecker.array(this)) {
-                return "[" + Session.get(this) + "]";
+            if (SessionChecker.number(this)) {
+                return Session.get(this);
             } else 
 
-            if (SessionChecker.object(this)) {
-                // fuck it
-            }
 
-            return Session.get(this);
+            if (SessionChecker.string(this)) {
+                return '"' + Session.get(this) + '"';
+            } else 
+
+            if (SessionChecker.array(this)) {
+                return "[" + Session.get(this) + "]";
+            } else {
+
+                return "Object";
+            } 
         }
     });
 
     Template.body.events({
         'click .SessionInspector_row': function () {
-            if (typeof(Session.get(this)) === "object") {
-                console.log(Session.get(this));
+            var oldValue = Session.get(this);
+            var newValue = prompt("What would you like to change the value of this Session variable to?");
+            
+            if (newValue === "" || newValue === null || newValue === undefined)  {
+                console.log("SessionInspector: Prompt entry cannot be empty. For null value, enter null.");
             } else {
-                
-                var oldValue = Session.get(this);
-                var newValue = prompt("What would you like to change the value of this Session variable to?");
-                
-                if (newValue === "" || newValue === null || newValue === undefined)  {
-                    console.log("SessionInspector: Prompt entry cannot be empty. For null value, enter null.");
-                } else {
-                    // Detect user entry
+                // Detect user entry
 
-                    if (newValue === "false") {
-                        Session.set(this, false);
-                    } else if (newValue === "true") {
-                        Session.set(this, true);
-                    } else if (newValue === "null") {
-                        Session.set(this, null);
-                        newValue = "null";
-                    } else { 
-                        Session.set(this, newValue);
-                    }
-                    
-                    // Alert user
-                    console.log("SessionInspector: Session " + this + " changed from " + oldValue + " to " + newValue + ".");
-                }  
-            }
+                if (newValue === "false") {
+                    Session.set(this, false);
+                } else if (newValue === "true") {
+                    Session.set(this, true);
+                } else if (newValue === "null") {
+                    Session.set(this, null);
+                    newValue = "null";
+                } else { 
+                    Session.set(this, newValue);
+                }
+                
+                // Alert user
+                console.log("SessionInspector: Session " + this + " changed from " + oldValue + " to " + newValue + ".");
+            }  
         },
         'click .SessionInspector_header': function () {
             $("#SessionInspector").hide();
