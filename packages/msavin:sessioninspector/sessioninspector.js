@@ -1,32 +1,28 @@
 if (Meteor.isClient) {
 
     var SessionChecker = {
-        null: function (session) {
-            if (Session.get(session) === null) {
+        null: function (value) {
+            if (value === null) {
                 return true;
             }
         },
-        boolean: function (session) {
-            if (typeof Session.get(session) === "boolean") {
+        boolean: function (value) {
+            if (typeof value === "boolean") {
                 return true;
             }
         },
-        array: function(session) {
-
-            var session  = Session.get(session),
-                isArray  = $.isArray(session);
-
-            if (isArray) {
+        array: function(value) {
+            if ($.isArray(value)) {
                 return true;
             }
         },
-        number: function (session) {
-            if (typeof Session.get(session) === "number") {
+        number: function (value) {
+            if (typeof value === "number") {
                 return true;
             }
         },
-        string: function (session) {
-            if (typeof Session.get(session) === "string") {
+        string: function (value) {
+            if (typeof value === "string") {
                 return true;
             }  
         }
@@ -39,28 +35,28 @@ if (Meteor.isClient) {
         },
         value: function () {
             
-            if (SessionChecker.null(this)) {
+            var value = Session.get(this);
+
+            if (SessionChecker.null(value)) {
                 return '<i>null</i>';
             } else
 
-            if (SessionChecker.boolean(this)) {
-                return '<i>' + Session.get(this) + '</i>';
+            if (SessionChecker.boolean(value)) {
+                return '<i>' + value + '</i>';
             } else 
 
-            if (SessionChecker.number(this)) {
-                return Session.get(this);
+            if (SessionChecker.number(value)) {
+                return value;
             } else 
 
-
-            if (SessionChecker.string(this)) {
-                return '"' + Session.get(this) + '"';
+            if (SessionChecker.string(value)) {
+                return '"' + value + '"';
             } else 
 
-            if (SessionChecker.array(this)) {
-                return "[" + Session.get(this) + "]";
+            if (SessionChecker.array(value)) {
+                return "[" + value + "]";
             } else {
-
-                return "Object";
+                return "<i>Object</i>";
             } 
         }
     });
