@@ -37,27 +37,29 @@ if (Meteor.isClient) {
             
             var value = Session.get(this);
 
-            if (SessionChecker.null(value)) {
-                return '<i>null</i>';
-            } else
+            switch (true) {
+                case SessionChecker.null(value):
+                    return '<i>null</i>';
+                    break;
+                case SessionChecker.boolean(value):
+                    return '<i>' + value + '</i>';
+                    break;
+                case SessionChecker.number(value):
+                    return value;
+                    break;
+                case SessionChecker.string(value):
+                    return '"' + value + '"';
+                    break;
+                case SessionChecker.array(value):
+                    return "[" + value + "]";
+                    break;
+                default:
+                    return "<i>Object</i>";
+                    break;
+            }
+            
 
-            if (SessionChecker.boolean(value)) {
-                return '<i>' + value + '</i>';
-            } else 
 
-            if (SessionChecker.number(value)) {
-                return value;
-            } else 
-
-            if (SessionChecker.string(value)) {
-                return '"' + value + '"';
-            } else 
-
-            if (SessionChecker.array(value)) {
-                return "[" + value + "]";
-            } else {
-                return "<i>Object</i>";
-            } 
         }
     });
 
@@ -71,15 +73,20 @@ if (Meteor.isClient) {
             } else {
                 // Detect user entry
 
-                if (newValue === "false") {
-                    Session.set(this, false);
-                } else if (newValue === "true") {
-                    Session.set(this, true);
-                } else if (newValue === "null") {
-                    Session.set(this, null);
-                    newValue = "null";
-                } else { 
-                    Session.set(this, newValue);
+                switch (newValue) {
+                    case "false":
+                        Session.set(this, false);
+                        break;
+                    case "true":
+                        Session.set(this, true);
+                        break;
+                    case "null":
+                        Session.set(this, null);
+                        newValue = "null";
+                        break;
+                    default:
+                        Session.set(this, newValue);
+                        break;
                 }
                 
                 // Alert user
